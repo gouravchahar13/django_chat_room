@@ -55,7 +55,7 @@ def Signup_view(request):
                 messages.info(request,'Invalid username')
                 return redirect('signup')
             form.save()
-            reg_mail()
+            # reg_mail()
             messages.info(request,'account created successfully')
             return redirect('signup')
         else:
@@ -121,7 +121,7 @@ def settings_user(request,username):
 def delete_user(request,username):
     u = User.objects.get(username = username)
     u.delete()
-    delete_mail()
+    # delete_mail()
     messages.info(request, "Acoount deleted successfully")
     return redirect('home')
 
