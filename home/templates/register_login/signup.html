@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{% load  crispy_forms_tags %}
+{%block main%}
+
+<div class="container text-center text-primary h2">
+    Welcome to the Signup Page
+</div>
+{%if messages%}
+{%for message in messages%}
+<div class="alert alert-primary text-center" role="alert">
+    {{message}}
+</div>
+{%endfor%}
+{%endif%}
+
+<div class="container shadow card py-5 col-4">
+    <form action="" method="post" class="form-control">
+        {%csrf_token%}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-primary col-12">
+            Submit
+        </button>
+    </form>
+</div>
+
+{%endblock%}

@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+{%block main%}
+
+<div class="container text-center text-primary h2">
+    Welcome to the Chatting App
+</div>
+{%if messages%}
+{%for message in messages%}
+<div class="alert alert-primary text-center" role="alert">
+    {{message}}
+</div>
+{%endfor%}
+{%endif%}
+<div class="container card col-3 shadow mx-auto my-5">
+    <h2 class="text-center">Chat Room</h2>
+    <a href="/chatroom/" class="btn btn-success">Enter</a>
+</div>
+
+{%endblock%}

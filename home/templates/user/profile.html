@@ -1,0 +1,55 @@
+{%extends 'base.html'%} {%load static%} {%block main%}
+
+<!-- heading -->
+<div class="container text-center text-primary h2">
+  User:&nbsp;{{request.user.username}}
+</div>
+
+<!-- messages -->
+{%if messages%} {%for message in messages%}
+<div class="alert alert-primary text-center" role="alert">{{message}}</div>
+{%endfor%} {%endif%}
+
+<!-- main -->
+<div class="container card shadow col-8 h-100">
+  <img
+    src="{%static 'acc.jpg'%}"
+    alt="missing"
+    class="rounded-circle img-thumbnail justify-content-center mx-auto"
+    style="height: 22rem; width: 18rem"
+  />
+  <div class="container col-6">
+    <form class="form-control" method="post">
+      <div class="mb-3">
+        <label for="username" class="form-label">UserName</label>
+        <input
+          type="email"
+          class="form-control"
+          id="username"
+          name="username"
+          value="{{request.user.username}}"
+        />
+        <div id="emailHelp" class="form-text">
+          We'll never share your email with anyone else.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+        />
+      </div>
+      <a
+        href="/profile/{{request.user.username}}"
+        type="submit"
+        class="btn btn-success col-12"
+        >Update</a
+      >
+    </form>
+  </div>
+</div>
+
+{%endblock%}

@@ -1,0 +1,25 @@
+{%extends 'base.html'%} {%load static%} {%block main%}
+
+<!-- heading -->
+<div class="container text-center text-primary h2">
+  User:&nbsp;{{request.user.username}}
+</div>
+
+<!-- messages -->
+{%if messages%} {%for message in messages%}
+<div class="alert alert-primary text-center" role="alert">{{message}}</div>
+{%endfor%} {%endif%}
+
+<!-- main -->
+<div class="container card shadow col-8 h-100">
+  <img
+    src="{%static 'acc.jpg'%}"
+    alt="missing"
+    class="rounded-circle img-thumbnail justify-content-center mx-auto"
+    style="height: 22rem; width: 18rem"
+  />
+  <a href="/delete/{{request.user.username}}" class="btn btn-primary my-2">Delete Account</a>
+  <a href="/mail/{{request.user.username}}" class="btn btn-primary my-2">Send recovery mail</a>
+</div>
+
+{%endblock%}

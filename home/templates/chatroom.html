@@ -1,0 +1,55 @@
+{%extends 'base.html'%} {%load static%} {%block main%}
+<!-- script  -->
+<script src="{%static 'scripts/index.js'%}" type="text/javascript"></script>
+<!-- endscript  -->
+<div class="container text-center text-primary h2">
+  Welcome to the Chatting Room
+</div>
+<!-- alerts -->
+{%if messages%} {%for message in messages%}
+<div class="alert alert-primary text-center" role="alert">{{message}}</div>
+{%endfor%} {%endif%}
+<!-- alerts end -->
+<div class="container card shadow h-100 mx-auto">
+  <div class="container">
+    {%for chat in chat%}
+    <div class="container col-12 card shadow">
+      <div class="card-title">
+        {{chat.username}} <span>{{chat.timestamp}}</span
+        ><span id="reply">...</span>
+        
+        <a href="/deletepost/{{chat.id}}" class="btn btn-danger d-none" id="deletepostbtn">delete post</a>
+        
+    </div>
+      <div class="card-body">
+        <p>{{chat.content}}</p>
+        {%if chat.image%} 
+        {{chat.image}}
+        {%else%}
+        
+        {%endif%}
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+  <form action="" method="post" class="form-control" enctype="multipart/form-data">
+    {%csrf_token%}
+    <div class="row">
+      <div class="col-1 text-capitalize">
+        user:&nbsp;<b>{{request.user.username}}</b>
+      </div>
+      <div id="element"></div>
+      <input
+        type="text"
+        placeholder="Write Something"
+        class="col-7 rounded-3"
+        name="post"
+      />
+      <input type="file" name="image" class="form-control">
+      <input type="hidden" name="username" value="{{request.user.username}}" />
+      <button type="submit" class="btn btn-primary col-3">Post</button>
+    </div>
+  </form>
+</div>
+
+{%endblock%}
